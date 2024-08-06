@@ -10,11 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Nelmio\ApiDocBundle\Annotation as nelmio;
+use OpenApi\Attributes as OA;
 
 #[Route('/user',name:'user')]
-
+#[nelmio\Areas(['internal'])]
+#[OA\Tag('Controllers')]
 class UserController extends AbstractController{
-
     
     #[Route('/register',name:'user_register',methods: ['POST'])]
     public function registerUser(EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordHasher):Response{
